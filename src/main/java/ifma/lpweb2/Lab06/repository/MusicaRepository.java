@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MusicaRepositorio extends JpaRepository<Musica, Integer> {
+public interface MusicaRepository extends JpaRepository<Musica, Integer> {
     Musica buscaPor(String nome);
 }
