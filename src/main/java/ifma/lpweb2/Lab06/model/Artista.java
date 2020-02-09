@@ -1,8 +1,5 @@
 package ifma.lpweb2.Lab06.model;
 
-import com.sun.istack.NotNull;
-import org.hibernate.annotations.ManyToAny;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,10 +11,8 @@ public class Artista {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
     private String nome;
 
-    @NotNull
     private String nacionalidade;
 
     @ManyToMany()
@@ -43,4 +38,49 @@ public class Artista {
             inverseJoinColumns = @JoinColumn(name = "id_album")
     )
     private Set<Musica> participacoes = new HashSet<>();
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNacionalidade() {
+        return nacionalidade;
+    }
+
+    public void setNacionalidade(String nacionalidade) {
+        this.nacionalidade = nacionalidade;
+    }
+
+    public Set<Musica> getAutorias() {
+        return autorias;
+    }
+
+    public void setAutorias(Set<Musica> autorias) {
+        this.autorias = autorias;
+    }
+
+    public Set<Musica> getInterpretacoes() {
+        return interpretacoes;
+    }
+
+    public void setInterpretacoes(Set<Musica> interpretacoes) {
+        this.interpretacoes = interpretacoes;
+    }
+
+    public Set<Musica> getParticipacoes() {
+        return participacoes;
+    }
+
+    public void setParticipacoes(Set<Musica> participacoes) {
+        this.participacoes = participacoes;
+    }
 }

@@ -3,6 +3,7 @@ package ifma.lpweb2.Lab06.model;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,10 +14,8 @@ public class Musica {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
     private String nome;
 
-    @NotNull
     private int duracao;
 
     @ManyToMany(mappedBy = "interpretacoes")
@@ -27,4 +26,36 @@ public class Musica {
 
     @ManyToMany(mappedBy = "musicas")
     private Set<Album> albuns = new HashSet<>();
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getDuracao() {
+        return duracao;
+    }
+
+    public void setDuracao(int duracao) {
+        this.duracao = duracao;
+    }
+
+    public Set<Artista> getInterpretes() {
+        return interpretes;
+    }
+
+    public Set<Artista> getAutores() {
+        return autores;
+    }
+
+    public Set<Album> getAlbuns() {
+        return albuns;
+    }
 }
