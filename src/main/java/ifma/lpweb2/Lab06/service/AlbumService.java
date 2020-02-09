@@ -3,11 +3,13 @@ package ifma.lpweb2.Lab06.service;
 import ifma.lpweb2.Lab06.model.Album;
 import ifma.lpweb2.Lab06.repository.AlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class AlbumService {
     private final AlbumRepository albumRepository;
 
@@ -35,7 +37,7 @@ public class AlbumService {
     }
 
     @Transactional
-    public Album atualiza(Album entity, Integer id) {
+    public Album atualiza(Integer id, Album entity) {
         return genericService.atualiza(entity, id);
     }
 

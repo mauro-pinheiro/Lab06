@@ -3,11 +3,13 @@ package ifma.lpweb2.Lab06.service;
 import ifma.lpweb2.Lab06.model.Artista;
 import ifma.lpweb2.Lab06.repository.ArtistaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ArtistaService {
     private ArtistaRepository artistaRepository;
     private final GenericService<Artista> genericService;
@@ -34,7 +36,7 @@ public class ArtistaService {
     }
 
     @Transactional
-    public Artista atualiza(Artista entity, Integer id) {
+    public Artista atualiza(Integer id, Artista entity) {
         return genericService.atualiza(entity, id);
     }
 

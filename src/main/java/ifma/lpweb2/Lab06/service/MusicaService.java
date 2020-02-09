@@ -3,11 +3,13 @@ package ifma.lpweb2.Lab06.service;
 import ifma.lpweb2.Lab06.model.Musica;
 import ifma.lpweb2.Lab06.repository.MusicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class MusicaService {
     private final MusicaRepository musicaRepository;
 
@@ -36,7 +38,7 @@ public class MusicaService {
     }
 
     @Transactional
-    public Musica atualiza(Musica entity, Integer id) {
+    public Musica atualiza(Integer id, Musica entity) {
         return genericService.atualiza(entity, id);
     }
 
