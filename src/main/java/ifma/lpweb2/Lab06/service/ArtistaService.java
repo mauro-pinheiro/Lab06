@@ -22,7 +22,7 @@ public class ArtistaService {
 
     @Transactional(readOnly = true)
     public Optional<Artista> buscaPor(String nome){
-        return Optional.ofNullable(artistaRepository.buscaPor(nome));
+        return Optional.ofNullable(artistaRepository.findByNome(nome));
     }
 
     @Transactional

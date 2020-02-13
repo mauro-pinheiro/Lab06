@@ -1,5 +1,6 @@
 package ifma.lpweb2.Lab06.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -18,13 +19,16 @@ public class Musica {
 
     private int duracao;
 
-    @ManyToMany(mappedBy = "interpretacoes")
+    @ManyToMany(mappedBy = "interpretacoes", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("interpretacoes")
     private Set<Artista> interpretes = new HashSet<>();
 
-    @ManyToMany(mappedBy = "autorias")
+    @ManyToMany(mappedBy = "autorias", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("autorias")
     private Set<Artista> autores = new HashSet<>();
 
-    @ManyToMany(mappedBy = "musicas")
+    @ManyToMany(mappedBy = "musicas", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("musicas")
     private Set<Album> albuns = new HashSet<>();
 
     public Integer getId() {
@@ -57,5 +61,12 @@ public class Musica {
 
     public Set<Album> getAlbuns() {
         return albuns;
+    }
+
+    @Override
+    public String toString() {
+        return "Musica{" +
+                "nome='" + nome + '\'' +
+                '}';
     }
 }

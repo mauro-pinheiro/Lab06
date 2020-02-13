@@ -14,26 +14,26 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
-@RequestMapping("/albums")
+@RequestMapping("/artistas")
 public class ArtistaController {
     @Autowired
     private ApplicationEventPublisher publisher;
 
-    private ArtistaService albumService;
+    private ArtistaService artistaService;
 
     @Autowired
     public ArtistaController(ArtistaService artistaService){
-        this.albumService = artistaService;
+        this.artistaService = artistaService;
     }
 
     @GetMapping
     public List<Artista> todos(){
-        return albumService.todos();
+        return artistaService.todos();
     }
 
     @PostMapping
     public ResponseEntity<Artista> cria(@Validated @RequestBody Artista artista, HttpServletResponse response) {
-        Artista artistaSalvo = albumService.salva(artista);
+        Artista artistaSalvo = artistaService.salva(artista);
 
         publisher.publishEvent(new HeaderLocationEvent(this, response, artistaSalvo.getId()));
 
@@ -42,12 +42,12 @@ public class ArtistaController {
 
     @GetMapping("/{id}")
     public Artista buscaPor(@PathVariable Integer id) {
-        return albumService.buscaPor(id );
+        return artistaService.buscaPor(id );
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Artista> atualiza(@PathVariable Integer id, @Validated @RequestBody Artista artista ) {
-        Artista artistaManager = albumService.atualiza(id, artista);
+        Artista artistaManager = artistaService.atualiza(id, artista);
         return ResponseEntity.ok(artistaManager );
     }
 }

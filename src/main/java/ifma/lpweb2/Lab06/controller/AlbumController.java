@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
-@RequestMapping("/albums")
+@RequestMapping("/albuns")
 public class AlbumController {
     @Autowired
     private ApplicationEventPublisher publisher;

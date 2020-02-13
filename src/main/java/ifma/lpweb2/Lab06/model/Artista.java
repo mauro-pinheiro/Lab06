@@ -1,5 +1,7 @@
 package ifma.lpweb2.Lab06.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,6 +23,7 @@ public class Artista {
             joinColumns = @JoinColumn(name = "id_artista"),
             inverseJoinColumns = @JoinColumn(name = "id_musica")
     )
+    @JsonIgnoreProperties("autores")
     private Set<Musica> autorias = new HashSet<>();
 
     @ManyToMany
@@ -29,6 +32,7 @@ public class Artista {
             joinColumns = @JoinColumn(name = "id_artista"),
             inverseJoinColumns = @JoinColumn(name = "id_musica")
     )
+    @JsonIgnoreProperties("interpretes")
     private Set<Musica> interpretacoes = new HashSet<>();
 
     @ManyToMany
@@ -37,6 +41,7 @@ public class Artista {
             joinColumns = @JoinColumn(name = "id_artista"),
             inverseJoinColumns = @JoinColumn(name = "id_album")
     )
+    @JsonIgnoreProperties("participantes")
     private Set<Musica> participacoes = new HashSet<>();
 
 
@@ -82,5 +87,12 @@ public class Artista {
 
     public void setParticipacoes(Set<Musica> participacoes) {
         this.participacoes = participacoes;
+    }
+
+    @Override
+    public String toString() {
+        return "Artista{" +
+                "nome='" + nome + '\'' +
+                '}';
     }
 }

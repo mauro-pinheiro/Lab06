@@ -1,5 +1,7 @@
 package ifma.lpweb2.Lab06.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -22,9 +24,11 @@ public class Album {
             joinColumns = @JoinColumn(name = "id_album"),
             inverseJoinColumns = @JoinColumn(name = "id_musica")
     )
+    @JsonIgnoreProperties("albuns")
     private Set<Musica> musicas = new HashSet<>();
 
-    @ManyToMany(mappedBy = "participacoes")
+    @ManyToMany(mappedBy = "participacoes", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("participacoes")
     private Set<Artista> participantes = new HashSet<>();
 
     public Integer getId() {
@@ -66,5 +70,12 @@ public class Album {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Album{" +
+                "nome='" + nome + '\'' +
+                '}';
     }
 }

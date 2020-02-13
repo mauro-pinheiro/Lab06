@@ -2,7 +2,10 @@ package ifma.lpweb2.Lab06.service;
 
 import ifma.lpweb2.Lab06.model.Musica;
 import ifma.lpweb2.Lab06.repository.MusicaRepository;
+import ifma.lpweb2.Lab06.repository.filter.MusicaFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,10 +24,15 @@ public class MusicaService {
         genericService = new GenericService<>(musicaRepository);
     }
 
+    @Transactional(readOnly = true)
+    public Page<Musica> busca(MusicaFilter filtro, Pageable pageable) {
+        return musicaRepository.filtrar(filtro, pageable);
+    }
+
 
     @Transactional(readOnly = true)
     public Optional<Musica> buscaPor(String nome){
-        return Optional.ofNullable(musicaRepository.buscaPor(nome));
+        return Optional.ofNullable(musicaRepository.findByNome(nome));
     }
 
     @Transactional

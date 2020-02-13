@@ -23,7 +23,7 @@ public class AlbumService {
 
     @Transactional(readOnly = true)
     public Optional<Album> buscaPor(String nome){
-        return Optional.ofNullable(albumRepository.buscaPor(nome));
+        return Optional.ofNullable(albumRepository.findByNome(nome));
     }
 
     @Transactional
